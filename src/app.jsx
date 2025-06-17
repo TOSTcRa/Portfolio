@@ -7,7 +7,6 @@ import Admin from "./pages/admin";
 function App() {
 	return (
 		<Router>
-			<Link to='/admin'></Link>
 			<Routes>
 				<Route path='/' element={<Home />} />
 				<Route path='/admin' element={<Admin />} />
