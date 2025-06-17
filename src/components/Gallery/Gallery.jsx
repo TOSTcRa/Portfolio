@@ -10,10 +10,10 @@ export default function Gallery({category}) {
 			try {
 				const url =
 					category && category !== "All"
-						? `http://localhost:5000/files?category=${encodeURIComponent(
+						? `http://localhost:10000/files?category=${encodeURIComponent(
 								category
 						  )}`
-						: "http://localhost:5000/files";
+						: "http://localhost:10000/files";
 
 				const res = await axios.get(url);
 				setFiles(res.data);
@@ -32,7 +32,7 @@ export default function Gallery({category}) {
 					<div key={file._id} className='gallery__item'>
 						{file.contentType.startsWith("image/") ? (
 							<img
-								src={`http://localhost:5000/image/${file.filename}`}
+								src={`http://localhost:10000/image/${file.filename}`}
 								alt={file.filename}
 								loading='lazy'
 							/>
@@ -42,7 +42,7 @@ export default function Gallery({category}) {
 								loop
 								muted
 								playsInline
-								src={`http://localhost:5000/image/${file.filename}`}
+								src={`http://localhost:10000/image/${file.filename}`}
 								width='100%'>
 								Your browser does not support the video tag.
 							</video>

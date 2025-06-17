@@ -13,7 +13,7 @@ export default function ImageDeleter() {
 
 	const fetchImages = async () => {
 		try {
-			const res = await axios.get("http://localhost:5000/files");
+			const res = await axios.get("http://localhost:10000/files");
 			setImages(res.data);
 		} catch (err) {
 			console.error("Error fetching images", err);
@@ -29,7 +29,7 @@ export default function ImageDeleter() {
 		if (!window.confirm("Are you sure you want to delete this image?")) return;
 
 		try {
-			await axios.delete(`http://localhost:5000/image/${id}`, {
+			await axios.delete(`http://localhost:10000/image/${id}`, {
 				headers: {
 					Authorization: `Bearer ${token}`,
 				},
@@ -48,7 +48,7 @@ export default function ImageDeleter() {
 					<div className='item' key={img._id}>
 						{img.contentType.startsWith("image/") ? (
 							<img
-								src={`http://localhost:5000/image/${img.filename}`}
+								src={`http://localhost:10000/image/${img.filename}`}
 								alt={img.filename}
 								loading='lazy'
 							/>
@@ -58,7 +58,7 @@ export default function ImageDeleter() {
 								loop
 								muted
 								playsInline
-								src={`http://localhost:5000/image/${img.filename}`}
+								src={`http://localhost:10000/image/${img.filename}`}
 								width='100%'>
 								Your browser does not support the video tag.
 							</video>

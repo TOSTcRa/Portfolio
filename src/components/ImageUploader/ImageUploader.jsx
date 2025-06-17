@@ -42,7 +42,7 @@ export default function ImageUploader() {
 			formData.append("category", category);
 
 			const token = localStorage.getItem("token");
-			const res = await axios.post("http://localhost:5000/upload", formData, {
+			const res = await axios.post("http://localhost:10000/upload", formData, {
 				headers: {
 					Authorization: `Bearer ${token}`,
 					"Content-Type": "multipart/form-data",
@@ -98,7 +98,7 @@ export default function ImageUploader() {
 					<h3>Uploaded Files:</h3>
 					<div className='upload__preview'>
 						{uploaded.map((file) => {
-							const fileUrl = `http://localhost:5000/image/${file.filename}`;
+							const fileUrl = `http://localhost:10000/image/${file.filename}`;
 							const isVideo =
 								file.filename.endsWith(".mp4") ||
 								file.filename.endsWith(".mov") ||
