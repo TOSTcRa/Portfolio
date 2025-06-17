@@ -12,5 +12,8 @@ export default defineConfig({
 			"@": path.resolve(__dirname, "src"),
 		},
 	},
+	build: {
+		outDir: "dist",
+	},
 	assetsInclude: ["**/*.png", "**/*.jpg", "**/*.jpeg", "**/*.svg", "**/*.gif"],
 });
