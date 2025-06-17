@@ -10,10 +10,10 @@ export default function Gallery({category}) {
 			try {
 				const url =
 					category && category !== "All"
-						? `http://localhost:10000/files?category=${encodeURIComponent(
-								category
-						  )}`
-						: "http://localhost:10000/files";
+						? `${
+								import.meta.env.VITE_API_BASE_URL
+						  }/files?category=${encodeURIComponent(category)}`
+						: `${import.meta.env.VITE_API_BASE_URL}/files`;
 
 				const res = await axios.get(url);
 				setFiles(res.data);
@@ -32,7 +32,9 @@ export default function Gallery({category}) {
 					<div key={file._id} className='gallery__item'>
 						{file.contentType.startsWith("image/") ? (
 							<img
-								src={`http://localhost:10000/image/${file.filename}`}
+								src={`${import.meta.env.VITE_API_BASE_URL}/image/${
+									file.filename
+								}`}
 								alt={file.filename}
 								loading='lazy'
 							/>
@@ -42,7 +44,9 @@ export default function Gallery({category}) {
 								loop
 								muted
 								playsInline
-								src={`http://localhost:10000/image/${file.filename}`}
+								src={`${import.meta.env.VITE_API_BASE_URL}/image/${
+									file.filename
+								}`}
 								width='100%'>
 								Your browser does not support the video tag.
 							</video>

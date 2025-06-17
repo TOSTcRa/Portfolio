@@ -10,10 +10,13 @@ export default function LoginForm({onLogin}) {
 	const handleLogin = async (e) => {
 		e.preventDefault();
 		try {
-			const res = await axios.post("http://localhost:10000/login", {
-				username,
-				password,
-			});
+			const res = await axios.post(
+				`${import.meta.env.VITE_API_BASE_URL}/login`,
+				{
+					username,
+					password,
+				}
+			);
 
 			localStorage.setItem("token", res.data.token);
 			const payload = JSON.parse(atob(res.data.token.split(".")[1]));

@@ -13,7 +13,7 @@ export default function ImageDeleter() {
 
 	const fetchImages = async () => {
 		try {
-			const res = await axios.get("http://localhost:10000/files");
+			const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/files`);
 			setImages(res.data);
 		} catch (err) {
 			console.error("Error fetching images", err);
@@ -29,7 +29,7 @@ export default function ImageDeleter() {
 		if (!window.confirm("Are you sure you want to delete this image?")) return;
 
 		try {
-			await axios.delete(`http://localhost:10000/image/${id}`, {
+			await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/image/${id}`, {
 				headers: {
 					Authorization: `Bearer ${token}`,
 				},
@@ -48,7 +48,9 @@ export default function ImageDeleter() {
 					<div className='item' key={img._id}>
 						{img.contentType.startsWith("image/") ? (
 							<img
-								src={`http://localhost:10000/image/${img.filename}`}
+								src={`${import.meta.env.VITE_API_BASE_URL}/image/${
+									img.filename
+								}`}
 								alt={img.filename}
 								loading='lazy'
 							/>
@@ -58,7 +60,9 @@ export default function ImageDeleter() {
 								loop
 								muted
 								playsInline
-								src={`http://localhost:10000/image/${img.filename}`}
+								src={`${import.meta.env.VITE_API_BASE_URL}/image/${
+									img.filename
+								}`}
 								width='100%'>
 								Your browser does not support the video tag.
 							</video>

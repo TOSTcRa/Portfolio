@@ -42,12 +42,16 @@ export default function ImageUploader() {
 			formData.append("category", category);
 
 			const token = localStorage.getItem("token");
-			const res = await axios.post("http://localhost:10000/upload", formData, {
-				headers: {
-					Authorization: `Bearer ${token}`,
-					"Content-Type": "multipart/form-data",
-				},
-			});
+			const res = await axios.post(
+				`${import.meta.env.VITE_API_BASE_URL}/upload`,
+				formData,
+				{
+					headers: {
+						Authorization: `Bearer ${token}`,
+						"Content-Type": "multipart/form-data",
+					},
+				}
+			);
 
 			setUploaded(res.data.uploaded);
 			alert("Upload successful");
@@ -98,7 +102,9 @@ export default function ImageUploader() {
 					<h3>Uploaded Files:</h3>
 					<div className='upload__preview'>
 						{uploaded.map((file) => {
-							const fileUrl = `http://localhost:10000/image/${file.filename}`;
+							const fileUrl = `${import.meta.env.VITE_API_BASE_URL}/${
+								file.filename
+							}`;
 							const isVideo =
 								file.filename.endsWith(".mp4") ||
 								file.filename.endsWith(".mov") ||
