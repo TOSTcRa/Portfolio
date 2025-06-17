@@ -39,7 +39,6 @@ const USERS = [
 	},
 ];
 
-// Middleware: JWT аутентификация
 function authenticate(req, res, next) {
 	const authHeader = req.headers.authorization;
 	if (!authHeader || !authHeader.startsWith("Bearer ")) {
@@ -55,7 +54,6 @@ function authenticate(req, res, next) {
 	}
 }
 
-// Middleware: Только для админов
 function requireAdmin(req, res, next) {
 	if (req.user.role !== "admin") {
 		return res.status(403).json({error: "Admin access only"});
@@ -63,7 +61,6 @@ function requireAdmin(req, res, next) {
 	next();
 }
 
-// Авторизация
 app.post("/login", (req, res) => {
 	const {username, password} = req.body;
 	const user = USERS.find(
@@ -84,11 +81,9 @@ app.post("/login", (req, res) => {
 	res.status(401).json({error: "Invalid credentials"});
 });
 
-// Настройка multer
 const storage = multer.memoryStorage();
 const upload = multer({storage});
 
-// Загрузка изображений (только админ)
 app.post(
 	"/upload",
 	authenticate,
@@ -129,18 +124,36 @@ app.post(
 	}
 );
 
-// Получение изображения
-app.get("/image/:filename", (req, res) => {
-	gfsBucket
-		.openDownloadStreamByName(req.params.filename)
-		.on("error", () => res.status(404).send("Image not found"))
-		.pipe(res);
+app.get("/image/:filename", async (req, res) => {
+	try {
+		const filesCursor = gfsBucket.find({filename: req.params.filename});
+		const files = await filesCursor.toArray();
+		if (!files || files.length === 0) {
+			return res.status(404).send("File not found");
+		}
+		const file = files[0];
+
+		res.set("Content-Type", file.contentType); // Важно!
+		gfsBucket.openDownloadStreamByName(req.params.filename).pipe(res);
+	} catch (err) {
+		console.error("Error retrieving file:", err);
+		res.status(500).send("Server error");
+	}
 });
 
-// Получение списка файлов
 app.get("/files", async (req, res) => {
-	const category = req.query.category;
-	const query = category ? {"metadata.category": category} : {};
+	const {category, type} = req.query;
+	const query = {};
+
+	if (category) {
+		query["metadata.category"] = category;
+	}
+
+	if (type === "image") {
+		query.contentType = {$regex: "^image/"};
+	} else if (type === "video") {
+		query.contentType = {$regex: "^video/"};
+	}
 
 	try {
 		const files = [];
@@ -152,16 +165,15 @@ app.get("/files", async (req, res) => {
 	}
 });
 
-// Удаление изображения (только админ)
 app.delete("/image/:id", authenticate, requireAdmin, async (req, res) => {
 	try {
 		const fileId = new ObjectId(req.params.id);
 		await gfsBucket.delete(fileId);
 		console.log(`🗑️ Deleted file: ${fileId}`);
-		res.json({message: "Image deleted"});
+		res.json({message: "File deleted"});
 	} catch (err) {
 		console.error(err);
-		res.status(500).json({error: "Failed to delete image"});
+		res.status(500).json({error: "Failed to delete file"});
 	}
 });
 

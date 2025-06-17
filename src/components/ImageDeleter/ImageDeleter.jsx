@@ -46,10 +46,25 @@ export default function ImageDeleter() {
 			<div className='grid'>
 				{images.map((img) => (
 					<div className='item' key={img._id}>
-						<img
-							src={`http://localhost:5000/image/${img.filename}`}
-							alt={img.filename}
-						/>
+						{img.contentType.startsWith("image/") ? (
+							<img
+								src={`http://localhost:5000/image/${img.filename}`}
+								alt={img.filename}
+								loading='lazy'
+							/>
+						) : img.contentType.startsWith("video/") ? (
+							<video
+								autoPlay
+								loop
+								muted
+								playsInline
+								src={`http://localhost:5000/image/${img.filename}`}
+								width='100%'>
+								Your browser does not support the video tag.
+							</video>
+						) : (
+							<p>Unsupported file type</p>
+						)}
 						<p>Category: {img.metadata?.category || "Unknown"}</p>
 						<button onClick={() => handleDelete(img._id)}>Delete</button>
 					</div>

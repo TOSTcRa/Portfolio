@@ -30,11 +30,25 @@ export default function Gallery({category}) {
 			<div className='gallery__grid'>
 				{files.map((file) => (
 					<div key={file._id} className='gallery__item'>
-						<img
-							src={`http://localhost:5000/image/${file.filename}`}
-							alt={file.filename}
-							loading='lazy'
-						/>
+						{file.contentType.startsWith("image/") ? (
+							<img
+								src={`http://localhost:5000/image/${file.filename}`}
+								alt={file.filename}
+								loading='lazy'
+							/>
+						) : file.contentType.startsWith("video/") ? (
+							<video
+								autoPlay
+								loop
+								muted
+								playsInline
+								src={`http://localhost:5000/image/${file.filename}`}
+								width='100%'>
+								Your browser does not support the video tag.
+							</video>
+						) : (
+							<p>Unsupported file type</p>
+						)}
 					</div>
 				))}
 			</div>

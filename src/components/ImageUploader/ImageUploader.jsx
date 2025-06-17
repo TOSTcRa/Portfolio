@@ -12,7 +12,7 @@ export default function ImageUploader() {
 
 		const role = localStorage.getItem("role");
 		if (role !== "admin") {
-			alert("Only admins can upload images.");
+			alert("Only admins can upload files.");
 			return;
 		}
 
@@ -22,25 +22,25 @@ export default function ImageUploader() {
 		}
 
 		try {
-			// Сжатие изображений
-			const compressedFiles = await Promise.all(
-				files.map((file) =>
-					imageCompression(file, {
-						maxSizeMB: 0.5,
-						maxWidthOrHeight: 1200,
-						useWebWorker: true,
-					})
-				)
+			const processedFiles = await Promise.all(
+				files.map(async (file) => {
+					if (file.type.startsWith("image/")) {
+						return await imageCompression(file, {
+							maxSizeMB: 0.5,
+							maxWidthOrHeight: 1200,
+							useWebWorker: true,
+						});
+					}
+					return file;
+				})
 			);
 
-			// Формируем FormData
 			const formData = new FormData();
-			for (const file of compressedFiles) {
+			for (const file of processedFiles) {
 				formData.append("files", file);
 			}
 			formData.append("category", category);
 
-			// Отправка
 			const token = localStorage.getItem("token");
 			const res = await axios.post("http://localhost:5000/upload", formData, {
 				headers: {
@@ -59,18 +59,19 @@ export default function ImageUploader() {
 
 	return (
 		<div className='upload'>
-			<h2 className='upload__title'>Upload Images</h2>
+			<h2 className='upload__title'>Upload Images & Videos</h2>
 			<form className='upload__form' onSubmit={handleUpload}>
 				<div>
 					<input
 						type='file'
 						multiple
+						accept='image/*,video/*'
 						onChange={(e) => setFiles(Array.from(e.target.files))}
 						className='upload__form-btn'
 					/>
 				</div>
 
-				<div style={{margin: "10px 0"}}>
+				<div>
 					<label className='label'>Category: </label>
 					<select
 						className='select'
@@ -95,16 +96,31 @@ export default function ImageUploader() {
 			{uploaded.length > 0 && (
 				<div>
 					<h3>Uploaded Files:</h3>
-					{uploaded.map((file) => (
-						<div key={file.fileId}>
-							<img
-								src={`http://localhost:5000/image/${file.filename}`}
-								alt={file.filename}
-								style={{maxWidth: "200px", margin: "10px"}}
-							/>
-							<p>Category: {file.category}</p>
-						</div>
-					))}
+					<div className='upload__preview'>
+						{uploaded.map((file) => {
+							const fileUrl = `http://localhost:5000/image/${file.filename}`;
+							const isVideo =
+								file.filename.endsWith(".mp4") ||
+								file.filename.endsWith(".mov") ||
+								file.contentType?.startsWith("video/");
+
+							return (
+								<div key={file.fileId} className='upload__preview-item'>
+									{isVideo ? (
+										<video src={fileUrl} controls className='upload__video' />
+									) : (
+										<img
+											src={fileUrl}
+											alt={file.filename}
+											className='upload__image'
+										/>
+									)}
+									<p>{file.filename}</p>
+									<p>Category: {file.category}</p>
+								</div>
+							);
+						})}
+					</div>
 				</div>
 			)}
 		</div>
