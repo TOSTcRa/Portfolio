@@ -1,0 +1,42 @@
+// .gallery {
+// 	column-count: 3;
+// 	margin-top: 32px;
+// 	&__item {
+// 		break-inside: avoid;
+// 		margin-bottom: 1rem;
+// 		max-width: 390px;
+// 		border-radius: 8px;
+// 	}
+// }
+@use "./mixins" as *;
+
+.gallery {
+	margin-top: 32px;
+	margin-bottom: 32px;
+
+	&__grid {
+		column-count: 4;
+		@include respond-md {
+			column-count: 3;
+		}
+		@include respond-sm {
+			column-count: 2;
+		}
+		@include respond-sl {
+			column-count: 1;
+		}
+	}
+
+	&__item {
+		break-inside: avoid;
+		margin-bottom: 1rem;
+		border-radius: 10px;
+
+		img {
+			width: 100%;
+			height: auto;
+			display: block;
+			border-radius: 6px;
+		}
+	}
+}
