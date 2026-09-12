@@ -5,6 +5,8 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { ThemeScript } from "@/components/layout/ThemeScript";
+import { Nav } from "@/components/layout/Nav";
+import { Footer } from "@/components/layout/Footer";
 import { site } from "@/lib/site";
 import "../globals.css";
 
@@ -39,8 +41,12 @@ export default async function LocaleLayout({ children, params }: Props) {
       <head>
         <ThemeScript />
       </head>
-      <body className="min-h-dvh antialiased">
-        <NextIntlClientProvider>{children}</NextIntlClientProvider>
+      <body className="flex min-h-dvh flex-col antialiased">
+        <NextIntlClientProvider>
+          <Nav />
+          <div className="flex-1">{children}</div>
+          <Footer />
+        </NextIntlClientProvider>
       </body>
     </html>
   );
