@@ -30,3 +30,10 @@ test("theme toggle flips data-theme and persists", async ({ page }) => {
   await page.reload();
   expect(await html.getAttribute("data-theme")).toBe(after);
 });
+
+test("hero shows both CTAs and proof numbers", async ({ page }) => {
+  await page.goto("/en");
+  await expect(page.getByRole("link", { name: "Message on Telegram" }).first()).toBeVisible();
+  await expect(page.getByRole("link", { name: "See work" })).toBeVisible();
+  await expect(page.getByText("completed projects")).toBeVisible();
+});

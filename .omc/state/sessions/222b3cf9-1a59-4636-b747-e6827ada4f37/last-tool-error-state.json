@@ -1,7 +1,7 @@
 {
-  "tool_name": "mcp__freelancehunt__fh_get",
-  "tool_input_preview": "{\"path\":\"/my/reviews\"}",
-  "error": "Error: HTTP 404 GET /v2/my/reviews — {\"error\":{\"status\":404,\"title\":\"Not Found\",\"detail\":\"Not found.\"}}",
-  "timestamp": "2026-09-12T17:51:27.300Z",
+  "tool_name": "Bash",
+  "tool_input_preview": "{\"command\":\"sed -i 's/text-4xl font-semibold leading-\\\\[1.05\\\\] tracking-tight sm:text-5xl lg:text-6xl/text-4xl font-semibold leading-[1.05] tracking-tight sm:text-5xl xl:text-[3.25rem]/' src/componen...",
+  "error": "Exit code 144\n1",
+  "timestamp": "2026-09-12T18:21:06.236Z",
   "retry_count": 2
 }
