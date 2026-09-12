@@ -71,3 +71,10 @@ test("reviews marquee renders 14 quotes plus a hidden duplicate set", async ({ p
   expect(await page.locator("#reviews [data-review]").count()).toBe(14);
   expect(await page.locator("#reviews figure").count()).toBe(28);
 });
+
+test("contact section shows links; form hidden without Telegram env", async ({ page }) => {
+  await page.goto("/en#contact");
+  await expect(page.getByRole("heading", { name: "Have a task? Write to me." })).toBeVisible();
+  await expect(page.locator("#contact a[href='https://t.me/tostcr']")).toBeVisible();
+  await expect(page.locator("#contact form")).toHaveCount(0);
+});
