@@ -1,7 +1,7 @@
 # Portfolio redesign: tostcr-portfolio.vercel.app
 
 Date: 2026-09-12
-Status: approved in chat, pending spec review
+Status: approved 2026-09-12
 
 ## 1. Goal
 
@@ -62,18 +62,19 @@ Nav labels are anchors on the landing page and real links from case pages.
 Each section uses a different layout family. Eyebrow labels: at most two on the whole page.
 
 ### 5.1 Hero (asymmetric split)
-Left 7/12: headline, subtext, CTAs. Right 5/12: portrait photo.
+Left 7/12: headline, subtext, CTAs. Right 5/12: a generated abstract visual (dark, monochrome with
+the accent color, no faces, no text). The user does not want a real photo on the site.
 - Headline (2 lines max): UA "Фронтенд і фулстек для магазинів і продуктів." / EN "Frontend and
   fullstack for shops and products."
 - Subtext ≤ 20 words, from the Freelancehunt CV: React/Next.js interfaces, WordPress/OpenCart/Shopify
   shops, integrations, security.
 - CTAs: primary "Написати в Telegram" / "Message on Telegram"; secondary "Дивитись роботи" /
   "See work". These are the only two CTA intents on the page; the same labels are reused everywhere.
-- Motion: headline reveals line by line through a clip mask with stagger (storytelling). Portrait
-  fades and scales in from 1.04 to 1. Primary CTA is magnetic (pull toward cursor via
+- Motion: headline reveals line by line through a clip mask with stagger (storytelling). The visual
+  fades and scales in from 1.04 to 1, then drifts slowly with a subtle parallax on scroll. Primary CTA is magnetic (pull toward cursor via
   `useMotionValue`, feedback).
-- Portrait: user provides a photo. Until then, a labeled placeholder slot; the Freelancehunt avatar
-  is 225px and too small for production.
+- Visual asset: generated once with the available image tool, exported as WebP at 1600x2000 and
+  committed to `public/hero.webp`. Served with `next/image priority` (LCP).
 
 ### 5.2 Proof strip (numbers, full width, under hero)
 Four numbers from the Freelancehunt profile: completed projects, success rate, average grade,
@@ -182,7 +183,7 @@ type Profile = { completed: number; successRate: number; averageGrade: number;
 - Missing Telegram env: form hidden, no runtime error.
 - Telegram API failure: route returns 502 with a generic message; the form shows the direct Telegram
   link as the fallback.
-- Missing case cover: typographic card. Missing portrait: placeholder slot flagged in the build log.
+- Missing case cover: typographic card.
 - Unknown slug: `notFound()`.
 
 ## 10. Testing
@@ -201,7 +202,6 @@ Blog, admin panel, CMS, 3D, the old GitHub toy projects, analytics, review trans
 
 ## 12. Open content items the user provides later
 
-1. Portrait photo (min 1200px on the long side).
-2. Screenshots or URLs for shop cases; permission to name clients or keep them anonymous.
-3. Telegram bot token and chat id for the contact form.
-4. Which cases, if any, are under NDA.
+1. Screenshots or URLs for shop cases; permission to name clients or keep them anonymous.
+2. Telegram bot token and chat id for the contact form.
+3. Which cases, if any, are under NDA.
