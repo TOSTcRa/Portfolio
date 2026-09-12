@@ -133,8 +133,9 @@ Name, year, link to source repo, language switch.
 
 Layout: title, meta row (client type, year, stack), then sections: Task, What I did, Result, and a
 link if public. Optional image gallery (next/image, 16:9). Prev/next case links at the bottom.
-Motion: shared-element transition of the card title into the page title via Motion `layoutId`
-where both render on the client; page content fades in. Reduced motion: no transition.
+Motion: page content fades and slides in on mount (`PageTransition` client wrapper). A shared-element
+`layoutId` transition across App Router navigations is unreliable, so it is not used. Reduced motion:
+no transition.
 
 Case content lives in `src/content/cases/<slug>.<locale>.mdx` or in one TS object per case with
 `uk` and `en` fields. Decision: one TS object per case (typed, no MDX pipeline). Long text is a
