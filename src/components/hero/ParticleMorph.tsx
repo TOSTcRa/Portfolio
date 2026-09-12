@@ -58,7 +58,7 @@ export default function ParticleMorph({ onReady }: Props) {
     const shapes = SHAPE_NAMES.map((n) => shape(n, count));
     const seeds = new Float32Array(count);
     for (let i = 0; i < count; i++) seeds[i] = Math.random();
-    const scaleFor = mobile ? 0.85 : 1.0;
+    const scaleFor = mobile ? 0.85 : 0.92;
 
     // One box, instanced `count` times. All per-instance motion happens in the vertex shader:
     // the CPU only swaps the from/to buffers once per morph and updates a few uniforms.
@@ -121,7 +121,7 @@ export default function ParticleMorph({ onReady }: Props) {
     const group = new THREE.Group();
     group.add(mesh);
     // Push the object to the right on desktop so the headline sits over empty space.
-    group.position.x = mobile ? 0 : 1.6;
+    group.position.x = mobile ? 0 : 2.05;
     group.position.y = mobile ? 0.5 : 0.15;
     scene.add(group);
 
