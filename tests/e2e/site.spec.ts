@@ -43,3 +43,25 @@ test("services and how-i-work render", async ({ page }) => {
   await expect(page.getByRole("heading", { name: "What I do most" })).toBeVisible();
   await expect(page.getByRole("heading", { name: "How I work" })).toBeVisible();
 });
+
+test("work section lists cases and case pages resolve", async ({ page, request }) => {
+  await page.goto("/en#work");
+  await expect(page.getByRole("heading", { name: "Cases from real projects" })).toBeVisible();
+  const links = page.locator("#work a[href*='/work/']");
+  expect(await links.count()).toBeGreaterThanOrEqual(7);
+  const hrefs = await links.evaluateAll((as) => as.map((a) => (a as HTMLAnchorElement).getAttribute("href")!));
+  for (const href of hrefs) {
+    const res = await request.get(href);
+    expect(res.status(), href).toBe(200);
+  }
+  const res = await request.get("/en/work/does-not-exist");
+  expect(res.status()).toBe(404);
+});
+
+test("reduced motion renders work as a plain list", async ({ browser }) => {
+  const ctx = await browser.newContext({ reducedMotion: "reduce" });
+  const page = await ctx.newPage();
+  await page.goto("/en#work");
+  await expect(page.locator("#work [data-stack='list']")).toBeVisible();
+  await ctx.close();
+});
