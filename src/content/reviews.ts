@@ -1,0 +1,20 @@
+import type { Review } from "./schema";
+
+const REVIEWS_URL = "https://freelancehunt.com/freelancer/TOSTcR.html#reviews";
+
+export const reviews: Review[] = [
+  { id: 592949, author: "Никита Бесчастных", projectName: "ТЗ для интеграции омниканальной коммуникации в 1С", quote: "Нормальный, контактный исполнитель. Работа сделана без нареканий.", lang: "ru", grade: 10, publishedAt: "2026-08-27", url: REVIEWS_URL },
+  { id: 592124, author: "Taras Lytvyn", projectName: "Безпека сайту", quote: "Андрій швидко та ефективно вирішив проблему з безпекою сайту. Оперативно провів діагностику і розгорнуто пояснив, що не так і що він збирається зробити. Прекрасний професійний підхід, рекомендую!", lang: "uk", grade: 10, publishedAt: "2026-08-17", url: REVIEWS_URL },
+  { id: 586911, author: "Евгений К.", projectName: "Проект №4", quote: "Это уже далеко не первый наш совместный проект, и каждый раз вы реализуете все мои задумки несмотря на их сложность.", lang: "ru", grade: 10, publishedAt: "2026-06-11", url: REVIEWS_URL },
+  { id: 579404, author: "Евгений К.", projectName: "Реализация нового функционала для интернет-магазина", quote: "Андрей понимает задачи без лишних переписок и длинных ТЗ, сам предлагает интересные решения. Делает всё очень быстро и качественно.", lang: "ru", grade: 10, publishedAt: "2026-03-24", url: REVIEWS_URL },
+  { id: 577353, author: "Анна Пивцаева", company: "SOK Agency", projectName: "Допрацювання сайта 2", quote: "Є розуміння питання і як вирішувати задачі в коді, робота вся виконана і навіть трохи більше, рекомендую.", lang: "uk", grade: 9.8, publishedAt: "2026-03-04", url: REVIEWS_URL },
+  { id: 575662, author: "Анна Пивцаева", company: "SOK Agency", projectName: "Допрацювання сайта", quote: "Гарна робота, з розумінням справи, продовжуємо роботу.", lang: "uk", grade: 10, publishedAt: "2026-02-17", url: REVIEWS_URL },
+  { id: 574393, author: "Евгений К.", projectName: "Разработка каталога для интернет-магазина", quote: "С ним стало возможным реализация проектов, которые давно висели в подвешенном состоянии. Качество работы, отклик на правки и реализация СУПЕР!", lang: "ru", grade: 10, publishedAt: "2026-02-04", url: REVIEWS_URL },
+  { id: 570869, author: "Евгений К.", projectName: "Реализация новой витрины для интернет магазина", quote: "Андрей на сложные задачи находит простые решения, потому и обращаемся уже не первый раз. Все четко и по делу.", lang: "ru", grade: 10, publishedAt: "2025-12-27", url: REVIEWS_URL },
+  { id: 567788, author: "Евгений К.", projectName: "Доработка сайта", quote: "Все на высоком уровне, быстрые правки и грамотная реализация задуманного.", lang: "ru", grade: 10, publishedAt: "2025-11-28", url: REVIEWS_URL },
+  { id: 563874, author: "Dmitro Px", company: "Px000", projectName: "Розробка гри Blackjack на Next.js", quote: "Все зроблено, на вищому рівні.", lang: "uk", grade: 10, publishedAt: "2025-10-26", url: REVIEWS_URL },
+  { id: 561115, author: "Евгений К.", projectName: "Доработка корзины", quote: "Отличная работа! Раньше срока и все качественно.", lang: "ru", grade: 10, publishedAt: "2025-10-01", url: REVIEWS_URL },
+  { id: 560272, author: "Евгений К.", projectName: "Доработка главной страницы сайта на PHP", quote: "Очень понравилось работать с Андреем, всегда на связи, все делает оперативно и профессионально.", lang: "ru", grade: 10, publishedAt: "2025-09-24", url: REVIEWS_URL },
+  { id: 556984, author: "Мария Данцова", projectName: "Частный проект", quote: "Все супер! Будем работать дальше.", lang: "ru", grade: 10, publishedAt: "2025-08-27", url: REVIEWS_URL },
+  { id: 556159, author: "Віктор Горда", projectName: "Допрацювання плагіна для WordPress", quote: "Дуже гарний виконавець, зробив все в термін і приємно спілкуватись.", lang: "uk", grade: 10, publishedAt: "2025-08-19", url: REVIEWS_URL },
+];
