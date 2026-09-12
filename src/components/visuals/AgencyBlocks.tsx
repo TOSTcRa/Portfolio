@@ -24,7 +24,7 @@ export function AgencyBlocks() {
           <motion.div
             key={b.area}
             style={{ gridArea: b.area }}
-            className={`rounded-md border border-line ${i === 1 ? "bg-accent/20" : "bg-bg-raised"}`}
+            className={`rounded-md border border-line shadow-[0_10px_24px_-14px_rgb(0_0_0/0.8)] ${i === 1 ? "bg-gradient-to-br from-accent/40 to-accent/5" : i === 0 ? "bg-gradient-to-r from-bg-raised to-bg" : "bg-bg-raised"}`}
             variants={{
               play: {
                 x: [b.from.x, 0, 0, b.from.x],
@@ -37,7 +37,29 @@ export function AgencyBlocks() {
             }}
             animate={state}
             initial={{ x: b.from.x, y: b.from.y, opacity: 0 }}
-          />
+          >
+            {i === 0 && (
+              <div className="flex h-full items-center justify-between px-3">
+                <span className="h-2 w-10 rounded bg-accent" />
+                <span className="flex gap-2">{[0, 1, 2].map((k) => <span key={k} className="h-1.5 w-6 rounded bg-fg-muted/50" />)}</span>
+              </div>
+            )}
+            {i === 1 && (
+              <div className="flex h-full flex-col justify-center gap-2 p-4">
+                <span className="h-3 w-3/4 rounded bg-fg/80" />
+                <span className="h-3 w-1/2 rounded bg-fg/60" />
+                <span className="mt-1 h-1.5 w-2/3 rounded bg-fg-muted/50" />
+                <span className="mt-2 h-5 w-16 rounded bg-accent" />
+              </div>
+            )}
+            {i > 1 && i < 7 && (
+              <div className="flex h-full flex-col justify-end gap-1 p-2">
+                <span className={`h-1/2 w-full rounded-sm bg-gradient-to-br ${["from-sky-400/50 to-sky-900/30", "from-amber-300/50 to-amber-900/30", "from-rose-400/50 to-rose-900/30", "from-violet-400/50 to-violet-900/30", "from-teal-300/50 to-teal-900/30"][i - 2]}`} />
+                <span className="h-1 w-2/3 rounded bg-fg-muted/50" />
+              </div>
+            )}
+            {i === 7 && <div className="flex h-full items-center gap-3 px-3">{[0, 1, 2, 3].map((k) => <span key={k} className="h-1.5 w-8 rounded bg-fg-muted/40" />)}</div>}
+          </motion.div>
         ))}
       </div>
     </div>

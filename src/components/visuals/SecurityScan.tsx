@@ -12,7 +12,7 @@ const CYCLE = 6;
 export function SecurityScan() {
   const { ref, state } = useLoop();
   return (
-    <div ref={ref} data-visual="site-security-cleanup" className="relative h-full w-full overflow-hidden bg-bg p-5">
+    <div ref={ref} data-visual="site-security-cleanup" className="relative h-full w-full overflow-hidden bg-[radial-gradient(60%_60%_at_50%_50%,#1a0b0b,var(--color-bg)_80%)] p-5">
       <div className="grid h-full gap-2" style={{ gridTemplateColumns: `repeat(${COLS}, 1fr)` }}>
         {Array.from({ length: COLS * ROWS }, (_, i) => {
           const col = i % COLS;
@@ -36,7 +36,7 @@ export function SecurityScan() {
         })}
       </div>
       <motion.div
-        className="absolute bottom-0 top-0 w-px bg-accent shadow-[0_0_24px_4px_var(--color-accent)]"
+        className="absolute bottom-0 top-0 w-[2px] bg-accent shadow-[0_0_40px_8px_var(--color-accent)]"
         variants={{
           play: { left: ["4%", "4%", "96%", "96%", "4%"], opacity: [0, 1, 1, 0, 0], transition: { duration: CYCLE, times: [0, 0.15, 0.7, 0.75, 1], repeat: Infinity, ease: "linear" } },
           end: { left: "96%", opacity: 0 },

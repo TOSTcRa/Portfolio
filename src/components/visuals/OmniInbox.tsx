@@ -3,6 +3,7 @@ import { motion } from "motion/react";
 import { useLoop, EASE } from "./useLoop";
 
 const CHANNELS = ["TG", "VB", "IG", "FB"];
+const COLORS = ["#2aabee", "#7360f2", "#e1306c", "#1877f2"];
 const CYCLE = 6;
 
 // Messages from four channels travel into one inbox list on the right.
@@ -12,7 +13,7 @@ export function OmniInbox() {
     <div ref={ref} data-visual="1c-omnichannel-spec" className="relative h-full w-full overflow-hidden bg-bg p-5">
       <div className="absolute left-5 top-5 flex h-[calc(100%-2.5rem)] flex-col justify-around">
         {CHANNELS.map((c) => (
-          <div key={c} className="flex h-9 w-9 items-center justify-center rounded-full border border-line bg-bg-raised font-mono text-[10px] text-fg-muted">
+          <div key={c} className="flex h-9 w-9 items-center justify-center rounded-full font-mono text-[10px] font-semibold text-white shadow-[0_6px_16px_-4px_rgb(0_0_0/0.6)]" style={{ backgroundColor: COLORS[CHANNELS.indexOf(c)] }}>
             {c}
           </div>
         ))}
@@ -30,16 +31,18 @@ export function OmniInbox() {
             animate={state}
             initial={{ opacity: 0, x: 12 }}
           >
-            <span className="font-mono text-[9px] text-accent">{c}</span>
+            <span className="h-2 w-2 rounded-full" style={{ backgroundColor: COLORS[i] }} />
+            <span className="font-mono text-[9px] text-fg">{c}</span>
             <span className="h-1 flex-1 rounded bg-fg-muted/40" />
+            <span className="font-mono text-[8px] text-fg-muted">now</span>
           </motion.div>
         ))}
       </div>
       {CHANNELS.map((c, i) => (
         <motion.div
           key={c}
-          className="absolute left-14 h-5 w-14 rounded-full bg-accent/80"
-          style={{ top: `${14 + i * 24}%` }}
+          className="absolute left-14 h-5 w-14 rounded-full shadow-[0_0_16px_-2px_currentColor]"
+          style={{ top: `${14 + i * 24}%`, backgroundColor: COLORS[i], color: COLORS[i] }}
           variants={{
             play: {
               x: [0, 0, 150, 150],

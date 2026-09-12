@@ -36,8 +36,8 @@ export function AdminPanel() {
       </div>
       <div className="grid flex-1 grid-cols-3 gap-2 p-4">
         {[0, 1, 2, 3, 4].map((i) => (
-          <div key={i} className="flex flex-col justify-end gap-1 rounded-md border border-line bg-bg-raised p-2">
-            <div className="h-1/2 rounded-sm bg-line" />
+          <div key={i} className="flex flex-col justify-end gap-1 rounded-md border border-line bg-bg-raised p-2 shadow-[0_10px_24px_-12px_rgb(0_0_0/0.8)]">
+            <div className={`h-1/2 rounded-sm bg-gradient-to-br ${["from-sky-400/60 to-sky-900/40", "from-amber-300/60 to-amber-900/40", "from-rose-400/60 to-rose-900/40", "from-violet-400/60 to-violet-900/40", "from-teal-300/60 to-teal-900/40"][i]}`} />
             <div className="h-1 w-2/3 rounded bg-fg-muted/40" />
           </div>
         ))}

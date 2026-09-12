@@ -88,3 +88,44 @@ body {
   content-visibility: auto;
   contain-intrinsic-size: auto 900px;
 }
+
+/* Hero ground: accent glow to the right, vignette so text stays readable. */
+.hero-glow {
+  background:
+    radial-gradient(60% 70% at 72% 45%, color-mix(in oklab, var(--color-accent) 22%, transparent) 0%, transparent 70%),
+    radial-gradient(40% 40% at 20% 90%, color-mix(in oklab, var(--color-accent) 8%, transparent) 0%, transparent 70%);
+}
+.hero-vignette {
+  background: linear-gradient(90deg, var(--color-bg) 0%, color-mix(in oklab, var(--color-bg) 70%, transparent) 35%, transparent 60%),
+    linear-gradient(0deg, var(--color-bg) 0%, transparent 35%);
+  pointer-events: none;
+}
+@media (max-width: 1023px) {
+  .hero-vignette {
+    background: linear-gradient(0deg, var(--color-bg) 0%, color-mix(in oklab, var(--color-bg) 75%, transparent) 55%, transparent 100%);
+  }
+}
+
+/* Spotlight card shell: a border glow that follows the cursor, plus a faint inner light. */
+.spotlight-card {
+  --mx: 50%;
+  --my: 50%;
+  border-radius: var(--radius-md);
+  background:
+    radial-gradient(520px circle at var(--mx) var(--my), color-mix(in oklab, var(--color-accent) 14%, transparent), transparent 45%),
+    linear-gradient(135deg, var(--color-bg-raised), color-mix(in oklab, var(--color-bg-raised) 60%, var(--color-bg)));
+  box-shadow: inset 0 1px 0 color-mix(in oklab, var(--color-fg) 8%, transparent), 0 30px 60px -30px rgb(0 0 0 / 0.6);
+}
+.spotlight-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: radial-gradient(360px circle at var(--mx) var(--my), color-mix(in oklab, var(--color-accent) 70%, transparent), var(--color-line) 55%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}

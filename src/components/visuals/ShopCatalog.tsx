@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import { useLoop, EASE } from "./useLoop";
 
 const TILES = [0, 1, 2, 3, 4, 5, 6, 7];
+const HUES = ["from-rose-400/70 to-rose-900/40", "from-amber-300/70 to-amber-800/40", "from-sky-400/70 to-sky-900/40", "from-violet-400/70 to-violet-900/40", "from-emerald-400/70 to-emerald-900/40", "from-orange-400/70 to-orange-900/40", "from-teal-300/70 to-teal-900/40", "from-fuchsia-400/70 to-fuchsia-900/40"];
+const PRICES = ["1 290", "840", "2 450", "590", "1 990", "720", "3 100", "460"];
 const FILTERS = ["All", "New", "Sale"];
 const ORDERS = [TILES, [3, 0, 6, 1, 7, 2, 4, 5], [5, 2, 7, 0, 3, 6, 1, 4]];
 
@@ -46,11 +48,12 @@ export function ShopCatalog() {
             key={id}
             layout
             transition={{ duration: 0.7, ease: EASE }}
-            className="flex flex-col justify-end gap-1 rounded-md border border-line bg-bg-raised p-2"
+            className="relative flex flex-col justify-end gap-1 overflow-hidden rounded-md border border-line bg-bg-raised p-2 shadow-[0_10px_24px_-12px_rgb(0_0_0/0.8)]"
           >
-            <div className="h-1/2 rounded-sm bg-line" />
+            <div className={`h-1/2 rounded-sm bg-gradient-to-br ${HUES[id]}`} />
+            {id % 3 === 0 && <span className="absolute right-1.5 top-1.5 rounded-sm bg-accent px-1 font-mono text-[8px] font-semibold text-accent-fg">-20%</span>}
             <div className="h-1 w-3/4 rounded bg-fg-muted/50" />
-            <div className="h-1 w-1/3 rounded bg-accent" />
+            <div className="font-mono text-[9px] text-fg">{PRICES[id]} ₴</div>
           </motion.div>
         ))}
       </div>

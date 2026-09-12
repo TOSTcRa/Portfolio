@@ -6,6 +6,7 @@ import { ArrowUpRight } from "@phosphor-icons/react";
 import { Link } from "@/i18n/navigation";
 import type { CaseCardData } from "@/content";
 import { CaseVisual } from "@/components/visuals/CaseVisual";
+import { TiltSpotlight } from "@/components/motion/TiltSpotlight";
 
 type Props = { c: CaseCardData; index: number; total: number; openLabel: string; sticky: boolean };
 
@@ -19,7 +20,8 @@ export function CaseCard({ c, index, total, openLabel, sticky }: Props) {
   const opacity = useTransform(scrollYProgress, [0, 1], [1, isLast ? 1 : 0.5]);
 
   const inner = (
-    <article className="grid h-full grid-cols-1 gap-6 rounded-md border border-line bg-bg-raised p-6 sm:p-8 lg:grid-cols-12 lg:gap-10">
+    <TiltSpotlight className="h-full">
+    <article className="grid h-full grid-cols-1 gap-6 p-6 sm:p-8 lg:grid-cols-12 lg:gap-10">
       <div className="flex flex-col justify-between gap-6 lg:col-span-6">
         <div className="flex flex-col gap-3">
           <span className="font-mono text-xs text-fg-muted">
@@ -41,7 +43,7 @@ export function CaseCard({ c, index, total, openLabel, sticky }: Props) {
           </span>
         </div>
       </div>
-      <div className="relative aspect-[16/10] overflow-hidden rounded-md border border-line lg:col-span-6">
+      <div className="relative aspect-[16/10] overflow-hidden rounded-md border border-line shadow-[0_20px_50px_-20px_rgb(0_0_0/0.7)] lg:col-span-6">
         {c.cover ? (
           <Image src={c.cover.src} alt={c.cover.alt} fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" />
         ) : (
@@ -49,6 +51,7 @@ export function CaseCard({ c, index, total, openLabel, sticky }: Props) {
         )}
       </div>
     </article>
+    </TiltSpotlight>
   );
 
   if (!sticky) {

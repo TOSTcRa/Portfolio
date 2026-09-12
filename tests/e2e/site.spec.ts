@@ -12,12 +12,16 @@ test("uk and en landing render the hero headline", async ({ page }) => {
   await expect(page.locator("h1")).toContainText("Frontend");
 });
 
-test("nav switches locale and keeps the path", async ({ page }) => {
+test("nav switches locale, keeps the path and the theme", async ({ page }) => {
   await page.goto("/uk");
+  await page.getByRole("button", { name: "Змінити тему" }).click();
+  const chosen = await page.locator("html").getAttribute("data-theme");
   await page.getByRole("link", { name: "Switch to English" }).click();
   await expect(page).toHaveURL(/\/en$/);
+  await expect(page.locator("html")).toHaveAttribute("data-theme", chosen!);
   await page.getByRole("link", { name: "Перейти на українську" }).click();
   await expect(page).toHaveURL(/\/uk$/);
+  await expect(page.locator("html")).toHaveAttribute("data-theme", chosen!);
 });
 
 test("theme toggle flips data-theme and persists", async ({ page }) => {
@@ -72,11 +76,17 @@ test("reviews marquee renders 14 quotes plus a hidden duplicate set", async ({ p
   expect(await page.locator("#reviews figure").count()).toBe(28);
 });
 
-test("contact section shows links; form hidden without Telegram env", async ({ page }) => {
+test("contact section shows links; form is complete when rendered", async ({ page }) => {
   await page.goto("/en#contact");
   await expect(page.getByRole("heading", { name: "Have a task? Write to me." })).toBeVisible();
   await expect(page.locator("#contact a[href='https://t.me/tostcr']")).toBeVisible();
-  await expect(page.locator("#contact form")).toHaveCount(0);
+  // The form renders only when Telegram env vars were present at build time.
+  const forms = await page.locator("#contact form").count();
+  if (forms === 1) {
+    for (const id of ["name", "reply", "message"]) await expect(page.locator(`#contact form #${id}`)).toBeVisible();
+  } else {
+    expect(forms).toBe(0);
+  }
 });
 
 test("every case card has its own animated visual", async ({ page }) => {
