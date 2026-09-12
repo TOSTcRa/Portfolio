@@ -86,3 +86,14 @@ test("every case card has its own animated visual", async ({ page }) => {
     await expect(page.locator(`#work [data-visual='${slug}']`)).toHaveCount(1);
   }
 });
+
+test("reduced motion: no hero canvas and no running animations in work", async ({ browser }) => {
+  const ctx = await browser.newContext({ reducedMotion: "reduce" });
+  const page = await ctx.newPage();
+  await page.goto("/en#work");
+  await page.waitForTimeout(1500);
+  expect(await page.locator("canvas").count()).toBe(0);
+  const running = await page.evaluate(() => document.getAnimations().filter((a) => a.playState === "running").length);
+  expect(running).toBe(0);
+  await ctx.close();
+});

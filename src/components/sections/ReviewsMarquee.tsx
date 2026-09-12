@@ -2,6 +2,7 @@ import { getTranslations } from "next-intl/server";
 import { Star } from "@phosphor-icons/react/dist/ssr";
 import { getReviews, type Review } from "@/content";
 import { site } from "@/lib/site";
+import { KineticHeading } from "@/components/motion/KineticHeading";
 
 function Card({ r, hidden }: { r: Review; hidden: boolean }) {
   return (
@@ -35,7 +36,7 @@ export async function ReviewsMarquee() {
   return (
     <section id="reviews" className="cv-auto scroll-mt-16 border-t border-line py-24">
       <div className="mx-auto mb-10 flex max-w-7xl items-end justify-between gap-4 px-4">
-        <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">{t("title")}</h2>
+        <KineticHeading text={t("title")} className="text-3xl font-semibold tracking-tight sm:text-4xl" />
         <a href={site.freelancehunt} target="_blank" rel="noopener noreferrer" className="text-sm text-fg-muted underline underline-offset-4 hover:text-fg">
           {t("source")}
         </a>

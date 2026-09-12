@@ -2,6 +2,7 @@
 import { useReducedMotion } from "motion/react";
 import type { CaseCardData } from "@/content";
 import { CaseCard } from "./CaseCard";
+import { KineticHeading } from "@/components/motion/KineticHeading";
 
 type Props = { cases: CaseCardData[]; eyebrow: string; title: string; openLabel: string };
 
@@ -12,7 +13,7 @@ export function WorkStack({ cases, eyebrow, title, openLabel }: Props) {
     <section id="work" className="cv-auto mx-auto max-w-7xl scroll-mt-16 px-4 py-24">
       <div className="mb-12 flex flex-col gap-3">
         <span className="font-mono text-xs uppercase tracking-[0.18em] text-accent">{eyebrow}</span>
-        <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">{title}</h2>
+        <KineticHeading text={title} className="text-3xl font-semibold tracking-tight sm:text-4xl" />
       </div>
       <div data-stack={sticky ? "sticky" : "list"} className={sticky ? "flex flex-col gap-[20vh] pb-[20vh]" : "flex flex-col gap-6"}>
         {cases.map((c, i) => (

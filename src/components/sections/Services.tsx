@@ -1,6 +1,7 @@
 import { getTranslations } from "next-intl/server";
 import { Storefront, Code, Robot, ShieldCheck } from "@phosphor-icons/react/dist/ssr";
 import { Reveal } from "@/components/motion/Reveal";
+import { KineticHeading } from "@/components/motion/KineticHeading";
 
 const items = [
   { key: "shops", Icon: Storefront, span: "lg:col-span-7", tinted: true },
@@ -13,7 +14,7 @@ export async function Services() {
   const t = await getTranslations("services");
   return (
     <section className="mx-auto max-w-7xl px-4 py-24">
-      <h2 className="mb-10 text-3xl font-semibold tracking-tight sm:text-4xl">{t("title")}</h2>
+      <KineticHeading text={t("title")} className="mb-10 text-3xl font-semibold tracking-tight sm:text-4xl" />
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-12">
         {items.map((item, i) => (
           <Reveal key={item.key} delay={i * 0.06} className={item.span}>

@@ -5,6 +5,7 @@ import { contactEnabled } from "@/lib/contact";
 import { site } from "@/lib/site";
 import { Reveal } from "@/components/motion/Reveal";
 import { ContactForm } from "./ContactForm";
+import { KineticHeading } from "@/components/motion/KineticHeading";
 
 export async function Contact() {
   const t = await getTranslations("contact");
@@ -21,7 +22,7 @@ export async function Contact() {
       <div className="mx-auto grid max-w-7xl gap-12 px-4 py-24 lg:grid-cols-12">
         <Reveal className="flex flex-col gap-6 lg:col-span-5">
           <span className="font-mono text-xs uppercase tracking-[0.18em] text-accent">{t("eyebrow")}</span>
-          <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">{t("title")}</h2>
+          <KineticHeading text={t("title")} className="text-3xl font-semibold tracking-tight sm:text-4xl" />
           <p className="text-sm text-fg-muted">{p.available ? t("available") : t("busy")}</p>
           <ul className="flex flex-col gap-3">
             {links.map((l) => (
