@@ -50,6 +50,17 @@ function readAccent(): THREE.Color {
   return new THREE.Color(raw || "#34d399");
 }
 
+function isDark(): boolean {
+  return document.documentElement.getAttribute("data-theme") !== "light";
+}
+
+// Additive glow reads well on the dark ground; on light, plain alpha blending keeps the shape crisp.
+function applyTheme(material: THREE.ShaderMaterial) {
+  material.uniforms.uColor.value = readAccent();
+  material.blending = isDark() ? THREE.AdditiveBlending : THREE.NormalBlending;
+  material.needsUpdate = true;
+}
+
 type Props = { onReady?: () => void };
 
 export default function ParticleMorph({ onReady }: Props) {
@@ -101,9 +112,8 @@ export default function ParticleMorph({ onReady }: Props) {
     scene.add(points);
 
     // Keep the accent in sync with the theme toggle.
-    const themeObserver = new MutationObserver(() => {
-      material.uniforms.uColor.value = readAccent();
-    });
+    applyTheme(material);
+    const themeObserver = new MutationObserver(() => applyTheme(material));
     themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
 
     let width = 1;
