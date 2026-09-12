@@ -1,0 +1,56 @@
+{
+  "nav": { "work": "Work", "reviews": "Reviews", "contact": "Contact", "theme": "Toggle theme", "locale": "Перейти на українську", "home": "Home" },
+  "hero": {
+    "headline1": "Frontend and fullstack",
+    "headline2": "for shops and products.",
+    "sub": "React and Next.js interfaces, WordPress, OpenCart and Shopify shops, integrations, analytics and security.",
+    "ctaTelegram": "Message on Telegram",
+    "ctaWork": "See work",
+    "visualAlt": "Abstract dark composition"
+  },
+  "proof": {
+    "completed": "completed projects",
+    "successRate": "success rate",
+    "averageGrade": "average grade",
+    "positiveReviews": "positive reviews",
+    "source": "Numbers from Freelancehunt"
+  },
+  "services": {
+    "title": "What I do most",
+    "items": {
+      "shops": { "title": "Shops and CMS sites", "body": "WordPress, OpenCart, Horoshop, Shopify: improvements, new modules, integrations, fixing someone else's code without breaking what works." },
+      "react": { "title": "React and Next.js interfaces", "body": "From markup to API wiring. Typed code, responsive layouts, attention to speed." },
+      "automation": { "title": "Analytics and automation", "body": "GA4 and GTM, scrapers, Telegram bots, data exchange between services." },
+      "security": { "title": "Security and performance", "body": "Cleaning compromised sites, bot protection, finding what loads the server." }
+    }
+  },
+  "work": { "eyebrow": "Selected work", "title": "Cases from real projects", "open": "Open case", "task": "Task", "did": "What I did", "result": "Result", "stack": "Stack", "client": "Client", "year": "Year", "budget": "Budget", "link": "Open site", "prev": "Previous", "next": "Next", "all": "All work", "budgetRange": "{min} - {max} UAH", "budgetOne": "{value} UAH" },
+  "reviews": { "title": "What clients say", "source": "All reviews on Freelancehunt", "grade": "Grade" },
+  "process": {
+    "title": "How I work",
+    "body": "First I say what exactly I will do and what can go wrong, then I do it. If a task is simpler and cheaper than it looks, I say so instead of quietly taking the budget."
+  },
+  "contact": {
+    "eyebrow": "Contact",
+    "title": "Have a task? Write to me.",
+    "available": "Open for new projects",
+    "busy": "Busy right now, but write anyway",
+    "email": "Email",
+    "github": "GitHub",
+    "freelancehunt": "Freelancehunt",
+    "form": {
+      "name": "Name",
+      "reply": "Email or Telegram for the reply",
+      "message": "What needs to be done",
+      "send": "Send",
+      "sending": "Sending",
+      "success": "Got it. I will reply within a day.",
+      "error": "Could not send. Message me on Telegram directly.",
+      "errName": "Enter your name",
+      "errReply": "Tell me where to reply",
+      "errMessage": "Describe the task in at least two sentences"
+    }
+  },
+  "footer": { "rights": "Andrii Tantsiura", "source": "Site source" },
+  "notFound": { "title": "This page does not exist", "back": "Back home" }
+}
