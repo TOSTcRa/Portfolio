@@ -1,5 +1,5 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { getCases } from "@/content";
+import { getCases, toCardData } from "@/content";
 import type { Locale } from "@/content/schema";
 import { Hero } from "@/components/sections/Hero";
 import { ProofStrip } from "@/components/sections/ProofStrip";
@@ -20,7 +20,7 @@ export default async function Home({ params }: Props) {
       <Hero />
       <ProofStrip />
       <Services />
-      <WorkStack cases={getCases()} locale={locale as Locale} eyebrow={t("eyebrow")} title={t("title")} openLabel={t("open")} />
+      <WorkStack cases={getCases().map((c) => toCardData(c, locale as Locale))} eyebrow={t("eyebrow")} title={t("title")} openLabel={t("open")} />
       <ReviewsMarquee />
       <HowIWork />
       <Contact />

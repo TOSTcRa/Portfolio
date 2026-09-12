@@ -4,13 +4,13 @@ import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
 import { ArrowUpRight } from "@phosphor-icons/react";
 import { Link } from "@/i18n/navigation";
-import type { Case, Locale } from "@/content/schema";
+import type { CaseCardData } from "@/content";
 
-type Props = { c: Case; locale: Locale; index: number; total: number; openLabel: string; sticky: boolean };
+type Props = { c: CaseCardData; index: number; total: number; openLabel: string; sticky: boolean };
 
 // Sticky-stack: each card pins at top-24 and, as the next card slides over it,
 // shrinks to 0.94 and dims. State transition: the reader sees "this one is done, next one".
-export function CaseCard({ c, locale, index, total, openLabel, sticky }: Props) {
+export function CaseCard({ c, index, total, openLabel, sticky }: Props) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const isLast = index === total - 1;
@@ -22,10 +22,10 @@ export function CaseCard({ c, locale, index, total, openLabel, sticky }: Props) 
       <div className="flex flex-col justify-between gap-6 lg:col-span-6">
         <div className="flex flex-col gap-3">
           <span className="font-mono text-xs text-fg-muted">
-            {c.clientType[locale]}, {c.year}
+            {c.clientType}, {c.year}
           </span>
-          <h3 className="text-2xl font-semibold tracking-tight sm:text-3xl">{c.title[locale]}</h3>
-          <p className="max-w-[55ch] text-fg-muted">{c.summary[locale]}</p>
+          <h3 className="text-2xl font-semibold tracking-tight sm:text-3xl">{c.title}</h3>
+          <p className="max-w-[55ch] text-fg-muted">{c.summary}</p>
         </div>
         <div className="flex flex-wrap items-center justify-between gap-4">
           <ul className="flex flex-wrap gap-2">
@@ -42,10 +42,10 @@ export function CaseCard({ c, locale, index, total, openLabel, sticky }: Props) 
       </div>
       <div className="relative aspect-[16/10] overflow-hidden rounded-md lg:col-span-6">
         {c.cover ? (
-          <Image src={c.cover.src} alt={c.cover.alt[locale]} fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" />
+          <Image src={c.cover.src} alt={c.cover.alt} fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" />
         ) : (
           <div className="flex h-full items-end bg-bg p-6">
-            <span className="font-mono text-5xl font-medium leading-none tracking-tight text-fg-muted/40 sm:text-7xl">
+            <span aria-hidden className="font-mono text-5xl font-medium leading-none tracking-tight text-fg-muted/60 sm:text-7xl">
               {String(index + 1).padStart(2, "0")}
             </span>
           </div>

@@ -1,7 +1,7 @@
 import { cases } from "./cases";
 import { reviews } from "./reviews";
 import { loadProfile } from "./profile";
-import { caseSchema, reviewSchema, type Case, type Review, type Profile } from "./schema";
+import { caseSchema, reviewSchema, type Case, type Review, type Profile, type Locale } from "./schema";
 
 const validatedCases: Case[] = cases
   .map((c) => caseSchema.parse(c))
@@ -28,3 +28,26 @@ export function getProfile(): Profile {
 }
 
 export type { Case, Review, Profile };
+
+// Slim, pre-localized shape for client-side cards so full case bodies never reach the RSC payload.
+export type CaseCardData = {
+  slug: string;
+  year: number;
+  clientType: string;
+  title: string;
+  summary: string;
+  stack: string[];
+  cover?: { src: string; alt: string };
+};
+
+export function toCardData(c: Case, locale: Locale): CaseCardData {
+  return {
+    slug: c.slug,
+    year: c.year,
+    clientType: c.clientType[locale],
+    title: c.title[locale],
+    summary: c.summary[locale],
+    stack: c.stack,
+    cover: c.cover ? { src: c.cover.src, alt: c.cover.alt[locale] } : undefined,
+  };
+}

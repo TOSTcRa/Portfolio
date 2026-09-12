@@ -17,7 +17,7 @@ export async function Contact() {
     { href: site.freelancehunt, label: t("freelancehunt"), Icon: Briefcase, primary: false },
   ];
   return (
-    <section id="contact" className="scroll-mt-16 border-t border-line">
+    <section id="contact" className="cv-auto scroll-mt-16 border-t border-line">
       <div className="mx-auto grid max-w-7xl gap-12 px-4 py-24 lg:grid-cols-12">
         <Reveal className="flex flex-col gap-6 lg:col-span-5">
           <span className="font-mono text-xs uppercase tracking-[0.18em] text-accent">{t("eyebrow")}</span>

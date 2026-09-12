@@ -13,7 +13,7 @@ export async function Nav() {
   return (
     <header className="sticky top-0 z-40 border-b border-line bg-bg/80 backdrop-blur">
       <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4">
-        <Link href="/" className="font-mono text-sm font-medium tracking-tight" aria-label={t("home")}>
+        <Link href="/" className="font-mono text-sm font-medium tracking-tight" title={t("home")}>
           {site.handle}
         </Link>
         <div className="flex items-center gap-1 sm:gap-6">

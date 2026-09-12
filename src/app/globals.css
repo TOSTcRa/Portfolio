@@ -62,3 +62,29 @@ body {
   html { scroll-behavior: auto; }
   .marquee-track { animation: none; }
 }
+
+/* Hero entrance, CSS-only so the LCP elements paint before hydration. */
+@keyframes rise {
+  from { transform: translateY(110%); }
+  to { transform: translateY(0); }
+}
+@keyframes settle {
+  from { opacity: 0; transform: scale(1.04); }
+  to { opacity: 1; transform: scale(1); }
+}
+.hero-line {
+  animation: rise 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.hero-visual {
+  animation: settle 1s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-line,
+  .hero-visual { animation: none; }
+}
+
+/* Below-the-fold sections skip style/layout until they approach the viewport. */
+.cv-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 900px;
+}

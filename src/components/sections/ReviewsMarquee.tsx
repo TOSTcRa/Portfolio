@@ -33,7 +33,7 @@ export async function ReviewsMarquee() {
   const t = await getTranslations("reviews");
   const reviews = getReviews();
   return (
-    <section id="reviews" className="scroll-mt-16 border-t border-line py-24">
+    <section id="reviews" className="cv-auto scroll-mt-16 border-t border-line py-24">
       <div className="mx-auto mb-10 flex max-w-7xl items-end justify-between gap-4 px-4">
         <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">{t("title")}</h2>
         <a href={site.freelancehunt} target="_blank" rel="noopener noreferrer" className="text-sm text-fg-muted underline underline-offset-4 hover:text-fg">
