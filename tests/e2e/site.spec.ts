@@ -37,3 +37,9 @@ test("hero shows both CTAs and proof numbers", async ({ page }) => {
   await expect(page.getByRole("link", { name: "See work" })).toBeVisible();
   await expect(page.getByText("completed projects")).toBeVisible();
 });
+
+test("services and how-i-work render", async ({ page }) => {
+  await page.goto("/en");
+  await expect(page.getByRole("heading", { name: "What I do most" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "How I work" })).toBeVisible();
+});
