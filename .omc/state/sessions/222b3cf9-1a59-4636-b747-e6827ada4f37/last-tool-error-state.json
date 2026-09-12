@@ -1,0 +1,7 @@
+{
+  "tool_name": "mcp__freelancehunt__fh_get",
+  "tool_input_preview": "{\"path\":\"/my/reviews\"}",
+  "error": "Error: HTTP 404 GET /v2/my/reviews — {\"error\":{\"status\":404,\"title\":\"Not Found\",\"detail\":\"Not found.\"}}",
+  "timestamp": "2026-09-12T17:51:27.300Z",
+  "retry_count": 2
+}
