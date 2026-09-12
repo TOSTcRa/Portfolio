@@ -187,7 +187,7 @@ export const cases: Case[] = [
       en: "In-house frontend work on flirtfordate.com and bez-kompleksov.com: interfaces, responsive layouts, stability.",
     },
     stack: ["React", "TypeScript", "HTML", "CSS"],
-    cover: { src: "/cases/dating-platforms.webp", alt: { uk: "Головна сторінка flirtfordate.com", en: "flirtfordate.com home page" }, width: 1600, height: 1000 },
+    gallery: [{ src: "/cases/dating-platforms.webp", alt: { uk: "Головна сторінка flirtfordate.com", en: "flirtfordate.com home page" }, width: 1600, height: 1000 }],
     link: "https://flirtfordate.com/",
     body: {
       task: {
@@ -221,7 +221,7 @@ export const cases: Case[] = [
       en: "A site from a provided design in 15 days: admin panel, product management, editable about section.",
     },
     stack: ["React", "Node.js", "Express", "MongoDB"],
-    cover: { src: "/cases/client-portfolio.webp", alt: { uk: "Головна сторінка сайту-портфоліо замовника", en: "Client portfolio site home page" }, width: 1600, height: 1000 },
+    gallery: [{ src: "/cases/client-portfolio.webp", alt: { uk: "Головна сторінка сайту-портфоліо замовника", en: "Client portfolio site home page" }, width: 1600, height: 1000 }],
     budgetUAH: [1500, 1500],
     body: {
       task: {

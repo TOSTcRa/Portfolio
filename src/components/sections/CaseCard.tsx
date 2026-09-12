@@ -5,6 +5,7 @@ import { useRef } from "react";
 import { ArrowUpRight } from "@phosphor-icons/react";
 import { Link } from "@/i18n/navigation";
 import type { CaseCardData } from "@/content";
+import { CaseVisual } from "@/components/visuals/CaseVisual";
 
 type Props = { c: CaseCardData; index: number; total: number; openLabel: string; sticky: boolean };
 
@@ -40,15 +41,11 @@ export function CaseCard({ c, index, total, openLabel, sticky }: Props) {
           </span>
         </div>
       </div>
-      <div className="relative aspect-[16/10] overflow-hidden rounded-md lg:col-span-6">
+      <div className="relative aspect-[16/10] overflow-hidden rounded-md border border-line lg:col-span-6">
         {c.cover ? (
           <Image src={c.cover.src} alt={c.cover.alt} fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" />
         ) : (
-          <div className="flex h-full items-end bg-bg p-6">
-            <span aria-hidden className="font-mono text-5xl font-medium leading-none tracking-tight text-fg-muted/60 sm:text-7xl">
-              {String(index + 1).padStart(2, "0")}
-            </span>
-          </div>
+          <CaseVisual slug={c.slug} index={index} />
         )}
       </div>
     </article>

@@ -78,3 +78,11 @@ test("contact section shows links; form hidden without Telegram env", async ({ p
   await expect(page.locator("#contact a[href='https://t.me/tostcr']")).toBeVisible();
   await expect(page.locator("#contact form")).toHaveCount(0);
 });
+
+test("every case card has its own animated visual", async ({ page }) => {
+  await page.goto("/en#work");
+  const slugs = ["blackjack-nextjs", "shop-storefront-catalog", "site-security-cleanup", "agency-site-improvements", "1c-omnichannel-spec", "dating-platforms-frontend", "client-portfolio-admin"];
+  for (const slug of slugs) {
+    await expect(page.locator(`#work [data-visual='${slug}']`)).toHaveCount(1);
+  }
+});
