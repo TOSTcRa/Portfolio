@@ -65,3 +65,9 @@ test("reduced motion renders work as a plain list", async ({ browser }) => {
   await expect(page.locator("#work [data-stack='list']")).toBeVisible();
   await ctx.close();
 });
+
+test("reviews marquee renders 14 quotes plus a hidden duplicate set", async ({ page }) => {
+  await page.goto("/en#reviews");
+  expect(await page.locator("#reviews [data-review]").count()).toBe(14);
+  expect(await page.locator("#reviews figure").count()).toBe(28);
+});
