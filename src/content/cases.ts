@@ -123,7 +123,7 @@ export const cases: Case[] = [
       uk: "Сім проєктів з одним замовником: вітрина, каталог, кошик, новий функціонал магазину.",
       en: "Seven projects with one client: storefront, catalog, cart, new shop features.",
     },
-    stack: ["PHP", "JavaScript", "MySQL", "OpenCart"],
+    stack: ["PHP", "JavaScript", "MySQL", "Shop-Script"],
     budgetUAH: [3000, 14000],
     body: {
       task: {

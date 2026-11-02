@@ -3,7 +3,7 @@
   "hero": {
     "headline1": "Frontend and fullstack",
     "headline2": "for shops and products.",
-    "sub": "React and Next.js interfaces, WordPress, OpenCart and Shopify shops, integrations, analytics and security.",
+    "sub": "React and Next.js interfaces, Shop-Script, WordPress and OpenCart shops, 1C and BAF integrations, SEO and security.",
     "ctaTelegram": "Message on Telegram",
     "ctaWork": "See work",
     "visualAlt": "Abstract dark composition"
@@ -18,7 +18,7 @@
   "services": {
     "title": "What I do most",
     "items": {
-      "shops": { "title": "Shops and CMS sites", "body": "WordPress, OpenCart, Horoshop, Shopify: improvements, new modules, integrations, fixing someone else's code without breaking what works." },
+      "shops": { "title": "Shops and CMS sites", "body": "Shop-Script, WordPress, OpenCart, Horoshop, Shopify: improvements, new modules, integrations, fixing someone else's code without breaking what works." },
       "react": { "title": "React and Next.js interfaces", "body": "From markup to API wiring. Typed code, responsive layouts, attention to speed." },
       "automation": { "title": "Analytics and automation", "body": "GA4 and GTM, scrapers, Telegram bots, data exchange between services." },
       "security": { "title": "Security and performance", "body": "Cleaning compromised sites, bot protection, finding what loads the server." }
