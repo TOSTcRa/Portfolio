@@ -25,12 +25,13 @@ test("nav switches locale, keeps the path and the theme", async ({ page }) => {
 });
 
 test("theme toggle flips data-theme and persists", async ({ page }) => {
-  await page.goto("/en");
+  // Clicking before hydration does nothing, so wait for the page to settle first.
+  await page.goto("/en", { waitUntil: "networkidle" });
   const html = page.locator("html");
-  const before = await html.getAttribute("data-theme");
+  const before = (await html.getAttribute("data-theme")) ?? "";
   await page.getByRole("button", { name: "Toggle theme" }).click();
+  await expect(html).not.toHaveAttribute("data-theme", before);
   const after = await html.getAttribute("data-theme");
-  expect(after).not.toBe(before);
   await page.reload();
   expect(await html.getAttribute("data-theme")).toBe(after);
 });
