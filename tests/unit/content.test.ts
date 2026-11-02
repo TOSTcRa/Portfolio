@@ -34,9 +34,9 @@ describe("cases", () => {
 });
 
 describe("reviews", () => {
-  it("has 14 validated reviews, newest first", () => {
+  it("has 16 validated reviews, newest first", () => {
     const reviews = getReviews();
-    expect(reviews.length).toBe(14);
+    expect(reviews.length).toBe(16);
     for (const r of reviews) expect(() => reviewSchema.parse(r)).not.toThrow();
     const dates = reviews.map((r) => r.publishedAt);
     expect(dates).toEqual([...dates].sort().reverse());
@@ -50,7 +50,7 @@ describe("profile", () => {
   it("validates and has sane numbers", () => {
     const p = getProfile();
     expect(() => profileSchema.parse(p)).not.toThrow();
-    expect(p.completed).toBeGreaterThanOrEqual(14);
+    expect(p.completed).toBeGreaterThanOrEqual(27);
     expect(p.successRate).toBe(100);
   });
 });

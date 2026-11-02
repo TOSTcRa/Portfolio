@@ -6,8 +6,12 @@ import { AgencyBlocks } from "./AgencyBlocks";
 import { OmniInbox } from "./OmniInbox";
 import { DatingMatch } from "./DatingMatch";
 import { AdminPanel } from "./AdminPanel";
+import { EdiFlow } from "./EdiFlow";
+import { SeoClimb } from "./SeoClimb";
 
 const registry: Record<string, () => React.JSX.Element> = {
+  "comarch-edi-baf": EdiFlow,
+  "auto-parts-shop-seo": SeoClimb,
   "blackjack-nextjs": Blackjack,
   "shop-storefront-catalog": ShopCatalog,
   "site-security-cleanup": SecurityScan,

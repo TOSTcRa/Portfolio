@@ -70,10 +70,10 @@ test("reduced motion renders work as a plain list", async ({ browser }) => {
   await ctx.close();
 });
 
-test("reviews marquee renders 14 quotes plus a hidden duplicate set", async ({ page }) => {
+test("reviews marquee renders 16 quotes plus a hidden duplicate set", async ({ page }) => {
   await page.goto("/en#reviews");
-  expect(await page.locator("#reviews [data-review]").count()).toBe(14);
-  expect(await page.locator("#reviews figure").count()).toBe(28);
+  expect(await page.locator("#reviews [data-review]").count()).toBe(16);
+  expect(await page.locator("#reviews figure").count()).toBe(32);
 });
 
 test("contact section shows links; form is complete when rendered", async ({ page }) => {
@@ -91,7 +91,7 @@ test("contact section shows links; form is complete when rendered", async ({ pag
 
 test("every case card has its own animated visual", async ({ page }) => {
   await page.goto("/en#work");
-  const slugs = ["blackjack-nextjs", "shop-storefront-catalog", "site-security-cleanup", "agency-site-improvements", "1c-omnichannel-spec", "dating-platforms-frontend", "client-portfolio-admin"];
+  const slugs = ["comarch-edi-baf", "auto-parts-shop-seo", "blackjack-nextjs", "shop-storefront-catalog", "site-security-cleanup", "agency-site-improvements", "1c-omnichannel-spec", "dating-platforms-frontend", "client-portfolio-admin"];
   for (const slug of slugs) {
     await expect(page.locator(`#work [data-visual='${slug}']`)).toHaveCount(1);
   }

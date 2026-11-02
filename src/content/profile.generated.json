@@ -1,8 +1,8 @@
 {
-  "completed": 14,
+  "completed": 27,
   "successRate": 100,
-  "averageGrade": 9.98,
-  "positiveReviews": 14,
+  "averageGrade": 9.99,
+  "positiveReviews": 26,
   "available": true,
-  "fetchedAt": "2026-09-12T00:00:00.000Z"
+  "fetchedAt": "2026-11-03T00:00:00.000Z"
 }

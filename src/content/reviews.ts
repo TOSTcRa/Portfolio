@@ -3,6 +3,8 @@ import type { Review } from "./schema";
 const REVIEWS_URL = "https://freelancehunt.com/freelancer/TOSTcR.html#reviews";
 
 export const reviews: Review[] = [
+  { id: 597700, author: "Віталій Якимчук", company: "Київ-Продукт", projectName: "Налаштувати вивантаження замовлень з Комарх в систему 1с", quote: "Дуже оперативно і якісно виконаний проект. Вкрай відповідальний і професійний виконавець. Рекомендую і будемо далі продовжувати співпрацю.", lang: "uk", grade: 10, publishedAt: "2026-11-01", url: REVIEWS_URL },
+  { id: 594758, author: "Никита Бесчастных", projectName: "Интеграция мессенджеров в 1С (Этап 2: Chatwoot, интерфейс и каналы Telegram/Viber)", quote: "Сделан второй этап, лучше чем ожидал :)", lang: "ru", grade: 10, publishedAt: "2026-09-20", url: REVIEWS_URL },
   { id: 592949, author: "Никита Бесчастных", projectName: "ТЗ для интеграции омниканальной коммуникации в 1С", quote: "Нормальный, контактный исполнитель. Работа сделана без нареканий.", lang: "ru", grade: 10, publishedAt: "2026-08-27", url: REVIEWS_URL },
   { id: 592124, author: "Taras Lytvyn", projectName: "Безпека сайту", quote: "Андрій швидко та ефективно вирішив проблему з безпекою сайту. Оперативно провів діагностику і розгорнуто пояснив, що не так і що він збирається зробити. Прекрасний професійний підхід, рекомендую!", lang: "uk", grade: 10, publishedAt: "2026-08-17", url: REVIEWS_URL },
   { id: 586911, author: "Евгений К.", projectName: "Проект №4", quote: "Это уже далеко не первый наш совместный проект, и каждый раз вы реализуете все мои задумки несмотря на их сложность.", lang: "ru", grade: 10, publishedAt: "2026-06-11", url: REVIEWS_URL },
